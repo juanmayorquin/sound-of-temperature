@@ -1,7 +1,9 @@
-import temp_data from "./temp_data.js"
+import { useEffect } from "react";
+import { data } from "./data/temp_data";
+import { useState } from "react";
 
 function App() {
-  let temp = "+5";
+  let temp = "+0";
   const [bgColor, setBgColor] = useState("bg-black");
 
   const updateBgColor = () => {
@@ -9,7 +11,10 @@ function App() {
       setBgColor("bg-barn_red")
     }
   };
-  console.log(temp_data[4]);
+
+  useEffect(() => {
+    updateBgColor();
+  }, []);
 
   return (
     <section className={`h-screen ${bgColor} text-white transition-all`}>

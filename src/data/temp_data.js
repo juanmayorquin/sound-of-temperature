@@ -1,4 +1,4 @@
-const data = [
+export const data = [
   { year: 1880, temperature: -0.17 },
   { year: 1881, temperature: -0.09 },
   { year: 1882, temperature: -0.11 },
