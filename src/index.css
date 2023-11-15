@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --barn_red: #7C0A02;
+    --fire_brick: #B22222;
+    --carrot_orange: #ED9121;
+    --teal: #008080;
+    --forest_green: #228B22;
+    --black: #000000;
+
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Rubik', sans-serif;
+  }
+
+  #myinput {
+    -webkit-appearance: none !important;
+    background: rgb(232, 232, 232);
+    opacity: 0.7;
+    border-radius: 2rem;
+    height: 7px;
+  }
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    background: #ffffff;
+    border-radius: 50%;
+    height: 18px;
+    width: 18px;
+  }
