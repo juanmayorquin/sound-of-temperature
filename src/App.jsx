@@ -98,6 +98,7 @@ function App() {
   const handleMonthChange = (where) => {
     let yearData = data.find((d) => d.year == year);
     if (where === "prev") {
+      if(year - 1 < 1880) return;
       if (month === 0) {
         yearData = data.find((d) => d.year == year - 1);
         setMonth(11);
@@ -113,6 +114,7 @@ function App() {
       }
     }
     else if (where === "next") {
+      if (year + 1 > 2023) return;
       if (month === 11) {
         yearData = data.find((d) => d.year == year + 1);
         setMonth(0);
