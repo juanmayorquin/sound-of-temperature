@@ -77,7 +77,6 @@ function App() {
       const yearData = data.find((d) => d.year == year);
       setMonth(0);
       setTemp(yearData.temperatures[0]);
-      console.log(yearData);
       setBgColor(calculateBgColor(yearData.temperatures[0]));
       calculateSong(yearData.temperatures[0]);
 
@@ -134,7 +133,6 @@ function App() {
     const newYear = Number(e.target.value);
     setYear(newYear);
     const yearData = data.find((d) => d.year == newYear);
-    console.log(yearData);
     if (yearData) {
       setTemp(yearData.temperatures[month]);
       setBgColor(calculateBgColor(yearData.temperatures[month]));
