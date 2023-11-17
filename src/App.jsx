@@ -207,7 +207,7 @@ function App() {
       <audio src={song} crossOrigin="anonymous" ref={audioRef} loop />
       {started ? (
         <section
-          className="h-screen text-white transition-all duration-200"
+          className="min-h-screen text-white transition-all duration-200"
           style={{ backgroundColor: `var(--${bgColor})` }}
         >
           <div className="flex flex-col h-full w-full justify-between  text-center py-10">
@@ -237,7 +237,7 @@ function App() {
               max="2023"
               value={year}
               onChange={handleYearChange}
-              className="max-w-5xl w-10/12 mx-auto h-10"
+              className="max-w-5xl w-10/12 my-10 mx-auto h-10"
             />
           </div>
         </section>
