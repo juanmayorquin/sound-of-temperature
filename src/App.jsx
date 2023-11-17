@@ -15,7 +15,7 @@ function Button({ year, handleStart }) {
   return (
     <button
       onClick={() => handleStart(year)}
-      className="px-10 py-5 rounded-full bg-green-900 text-white hover:bg-green-800 transition-all"
+      className="px-8 py-3 rounded-full bg-green-900 text-white hover:bg-green-800 transition-all"
     >
       {year}
     </button>
@@ -30,6 +30,7 @@ function App() {
 
   const [year, setYear] = useState(null);
   const [temp, setTemp] = useState(null);
+  const [width, setWidth] = useState(null);
   const [month, setMonth] = useState(null);
   const [bgColor, setBgColor] = useState(null);
   const [started, setStarted] = useState(false);
@@ -184,6 +185,23 @@ function App() {
       return "gray";
     }
   };
+
+
+  useEffect(()=>{
+    setWidth(window.innerWidth)
+    if(window.innerWidth > 1024){
+      setWidth(700)
+    }
+    else if(window.innerWidth > 768){
+      setWidth(500)
+    }
+    else if(window.innerWidth > 640){
+      setWidth(400)
+    }
+    else if(window.innerWidth > 480){
+      setWidth(300)
+    }
+  },[width])
   return (
     <>
       <audio src={song} crossOrigin="anonymous" ref={audioRef} loop />
@@ -192,16 +210,16 @@ function App() {
           className="h-screen text-white transition-all duration-200"
           style={{ backgroundColor: `var(--${bgColor})` }}
         >
-          <div className="flex flex-col h-full w-full justify-between text-center py-10">
+          <div className="flex flex-col h-full w-full justify-between  text-center py-10">
             <h2>{temp > 0 && "+"}{temp}{temp != null ? "°C" : "Registro no disponible"}</h2>
-            <div className="flex gap-7 justify-center">
+            <div className="flex gap-7 justify-center items-center">
               <button id="prev" onClick={() => handleMonthChange("prev")}>
                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-caret-left-filled" width={60} height={60} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M13.883 5.007l.058 -.005h.118l.058 .005l.06 .009l.052 .01l.108 .032l.067 .027l.132 .07l.09 .065l.081 .073l.083 .094l.054 .077l.054 .096l.017 .036l.027 .067l.032 .108l.01 .053l.01 .06l.004 .057l.002 .059v12c0 .852 -.986 1.297 -1.623 .783l-.084 -.076l-6 -6a1 1 0 0 1 -.083 -1.32l.083 -.094l6 -6l.094 -.083l.077 -.054l.096 -.054l.036 -.017l.067 -.027l.108 -.032l.053 -.01l.06 -.01z" strokeWidth={0} fill="currentColor" />
                 </svg>
               </button>
-              <h2 className="text-8xl font-semibold w-[500px]">{months[month]}, {year}</h2>
+              <h2 className="text-2xl lg:text-8xl font-semibold lg:w-[500px]">{months[month]}, {year}</h2>
               <button id="next" onClick={() => handleMonthChange("next")}>
                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-caret-right-filled" width={60} height={60} viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -210,7 +228,7 @@ function App() {
               </button>
             </div>
             <div className="flex flex-col items-center ">
-              <canvas width={700} height={700} ref={canvasRef} />
+              <canvas width={width} height={width} ref={canvasRef} />
             </div>
             <input
               id="myinput"
@@ -225,10 +243,10 @@ function App() {
         </section>
       ) : (
         <div className="flex flex-col gap-10 items-center justify-center h-screen text-center">
-          <h1 className="text-5xl">
+          <h1 className="text-3xl md:text-5xl">
             Welcome to the <br/> <span className="font-semibold text-forest_green-600">Sound of Temperature</span>
           </h1>
-          <div className="flex md:flex-wrap max-w-[100rem] w-1/2 min-w-[50rem] md:min-w-1/2 items-center justify-center gap-4 md:overflow-x-hidden overflow-x-auto">
+          <div className="flex flex-wrap w-full max-w-6xl gap-2 justify-center p-1">
             {decades.map((decade) => (
               <Button key={decade} year={decade} handleStart={handleStart} />
             ))}
