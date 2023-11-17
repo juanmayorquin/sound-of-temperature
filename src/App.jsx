@@ -78,7 +78,6 @@ function App() {
       const yearData = data.find((d) => d.year == year);
       setMonth(0);
       setTemp(yearData.temperatures[0]);
-      console.log(yearData);
       setBgColor(calculateBgColor(yearData.temperatures[0]));
       calculateSong(yearData.temperatures[0]);
 
@@ -100,6 +99,7 @@ function App() {
   const handleMonthChange = (where) => {
     let yearData = data.find((d) => d.year == year);
     if (where === "prev") {
+      if(year - 1 < 1880) return;
       if (month === 0) {
         yearData = data.find((d) => d.year == year - 1);
         setMonth(11);
@@ -115,6 +115,7 @@ function App() {
       }
     }
     else if (where === "next") {
+      if (year + 1 > 2023) return;
       if (month === 11) {
         yearData = data.find((d) => d.year == year + 1);
         setMonth(0);
@@ -135,7 +136,6 @@ function App() {
     const newYear = Number(e.target.value);
     setYear(newYear);
     const yearData = data.find((d) => d.year == newYear);
-    console.log(yearData);
     if (yearData) {
       setTemp(yearData.temperatures[month]);
       setBgColor(calculateBgColor(yearData.temperatures[month]));
